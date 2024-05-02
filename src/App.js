@@ -3,7 +3,7 @@ import CurrentWeather from "./components/current-weather/current-weather";
 import Search from "./components/search/search";
 import React, { useState } from "react";
 import { WEATHER_API_URL } from "./api";
-import Forecast from "./components/forecast/forecasts";
+// import Forecast from "./components/forecast/forecasts";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -15,8 +15,9 @@ function App() {
       `${WEATHER_API_URL}latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&timezone=auto`
     );
     const forecastFetch = fetch(
-      `${WEATHER_API_URL}latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&timezone=auto`
+      `${WEATHER_API_URL}latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`
     );
+    // https://api.open-meteo.com/v1/forecast?latitude=28&longitude=84&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto
     Promise.all([currentWeatherFetch, forecastFetch])
       .then(async (response) => {
         const [weatherResponse, forecastResponse] = await Promise.all(
@@ -29,14 +30,15 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  console.log(currentWeather);
-  console.log(forecast);
+  // console.log(currentWeather);
+  // console.log(forecast);
 
   return (
     <div className="container">
       <Search onSearchChange={handleOnSearchChange} />
-      {currentWeather && <CurrentWeather data={currentWeather} />}
-      <Forecast />
+      {currentWeather && forecast && (
+        <CurrentWeather currentData={currentWeather} forecastData={forecast} />
+      )}
     </div>
   );
 }

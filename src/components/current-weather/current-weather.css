@@ -116,3 +116,30 @@
     font-size: 40px;
   }
 }
+
+
+.forecast {
+  margin-top: 20px;
+}
+
+.forecast-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forecast-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forecast-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.forecast-info {
+  margin-top: 5px;
+  text-align: center;
+}

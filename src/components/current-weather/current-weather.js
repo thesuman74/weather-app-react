@@ -1,7 +1,8 @@
 import React from "react";
 import "./current-weather.css";
 
-const CurrentWeather = ({ data }) => {
+const CurrentWeather = ({ currentData, forecastData }) => {
+  // console.log(currentData.daily);
   const weatherNames = {
     0: "Clear",
     1: "Cloudy",
@@ -27,22 +28,22 @@ const CurrentWeather = ({ data }) => {
   return (
     <div className="weather">
       <div className="top">
-        <p className="city">Right now in {data.city}</p>
+        <p className="city">Right now in {currentData.city}</p>
         <p className="weather-description">
-          ,it's{weatherNames[data.current.weather_code]}
+          , it's {weatherNames[currentData.current.weather_code]}
         </p>
       </div>
       <div className="second_row">
         <img
           className="weather-icon"
-          src={`icons/${getWeatherIcon(data.current.weather_code)}`}
+          src={`icons/${getWeatherIcon(currentData.current.weather_code)}`}
           alt="Weather Icon"
         />
-
         <div className="temperature-box">
-          <div className="temperature">{data.current.temperature_2m}°F</div>
-
-          <div className="hl_temp">11/20 </div>
+          <div className="temperature">
+            {currentData.current.temperature_2m}°F
+          </div>
+          <div className="hl_temp">11/20</div>
         </div>
         <div className="details">
           <div className="parameter-row">
@@ -54,7 +55,7 @@ const CurrentWeather = ({ data }) => {
               />
             </span>
             <span className="parameter-value">
-              {data.current.wind_speed_10m} mph
+              {currentData.current.wind_speed_10m} mph
             </span>
           </div>
           <div className="parameter-row">
@@ -66,7 +67,7 @@ const CurrentWeather = ({ data }) => {
               />
             </span>
             <span className="parameter-value">
-              {data.current.relative_humidity_2m}%
+              {currentData.current.relative_humidity_2m}%
             </span>
           </div>
           <div className="parameter-row">
@@ -77,11 +78,34 @@ const CurrentWeather = ({ data }) => {
                 className="parameter-icon"
               />
             </span>
-            <span className="parameter-value">{data.current.rain}</span>
+            <span className="parameter-value">{currentData.current.rain}</span>
           </div>
         </div>
       </div>
-      <div className="forecast">{/* Add forecast items here */}</div>
+
+      <div className="forecast">
+        <div className="forecast-items">
+          {forecastData.daily &&
+            forecastData.daily.time.slice(0, 5).map((time, index) => (
+              <div className="forecast-item" key={index}>
+                <img
+                  className="forecast-icon"
+                  src={`icons/${getWeatherIcon(
+                    forecastData.daily.weather_code[index]
+                  )}`}
+                  alt="Weather Icon"
+                />
+                <div className="forecast-info">
+                  <p>{time}</p>
+                  <p>
+                    {forecastData.daily.temperature_2m_max[index]}/
+                    {forecastData.daily.temperature_2m_min[index]}
+                  </p>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 };

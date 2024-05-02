@@ -13,9 +13,9 @@ const Search = ({ onSearchChange }) => {
       const result = await response.json();
 
       if (result.results) {
-        const options = result.results.map((item) => ({
-          value: `${item.lon} ${item.lat}`,
-          label: `${item.address_line1},${item.address_line2}`,
+        const options = result.results.map((city) => ({
+          value: `${city.lon} ${city.lat}`,
+          label: `${city.address_line1},${city.address_line2}`,
         }));
 
         return {

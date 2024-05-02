@@ -24,6 +24,10 @@ const CurrentWeather = ({ currentData, forecastData }) => {
         return "unknown.png";
     }
   };
+  const getDayName = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", { weekday: "long" });
+  };
 
   return (
     <div className="weather">
@@ -41,7 +45,7 @@ const CurrentWeather = ({ currentData, forecastData }) => {
         />
         <div className="temperature-box">
           <div className="temperature">
-            {currentData.current.temperature_2m}°F
+            {currentData.current.temperature_2m}°C
           </div>
           <div className="hl_temp">11/20</div>
         </div>
@@ -96,11 +100,11 @@ const CurrentWeather = ({ currentData, forecastData }) => {
                   alt="Weather Icon"
                 />
                 <div className="forecast-info">
-                  <p>{time}</p>
                   <p>
                     {forecastData.daily.temperature_2m_max[index]}/
                     {forecastData.daily.temperature_2m_min[index]}
                   </p>
+                  <p>{getDayName(time)}</p>
                 </div>
               </div>
             ))}

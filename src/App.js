@@ -10,7 +10,7 @@ function App() {
   const [forecast, setForecast] = useState(null);
 
   const handleOnSearchChange = (searchData) => {
-    const [lat, lon] = searchData.value.split(" ");
+    const [lon, lat] = searchData.value.split(" ");
     const currentWeatherFetch = fetch(
       `${WEATHER_API_URL}latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&timezone=auto`
     );

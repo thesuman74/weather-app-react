@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./current-weather.css";
 
 const CurrentWeather = ({ currentData, forecastData }) => {
-  // console.log(currentData.daily);
+  const [unit, setUnit] = useState("F");
+
   const weatherNames = {
     0: "Clear",
     1: "Cloudy",
@@ -25,6 +26,20 @@ const CurrentWeather = ({ currentData, forecastData }) => {
     }
   };
 
+  const convertTemperature = (temperature) => {
+    let convertedTemperature;
+    if (unit === "F") {
+      convertedTemperature = (temperature * 9) / 5 + 32;
+    } else {
+      convertedTemperature = ((temperature - 32) * 5) / 9;
+    }
+    return convertedTemperature.toFixed(2); // rounds to 2 decimal places
+  };
+
+  const toggleUnit = () => {
+    setUnit(unit === "F" ? "C" : "F");
+  };
+
   return (
     <div className="weather">
       <div className="top">
@@ -41,23 +56,11 @@ const CurrentWeather = ({ currentData, forecastData }) => {
         />
         <div className="temperature-box">
           <div className="temperature">
-            {currentData.current.temperature_2m}°F
+            {convertTemperature(currentData.current.temperature_2m)}°{unit}
           </div>
           <div className="hl_temp">11/20</div>
         </div>
         <div className="details">
-          <div className="parameter-row">
-            <span className="parameter-label top">
-              <img
-                src="icons/50d.png"
-                alt="Wind Icon"
-                className="parameter-icon"
-              />
-            </span>
-            <span className="parameter-value">
-              {currentData.current.wind_speed_10m} mph
-            </span>
-          </div>
           <div className="parameter-row">
             <span className="parameter-label">
               <img
@@ -98,14 +101,27 @@ const CurrentWeather = ({ currentData, forecastData }) => {
                 <div className="forecast-info">
                   <p>{time}</p>
                   <p>
-                    {forecastData.daily.temperature_2m_max[index]}/
-                    {forecastData.daily.temperature_2m_min[index]}
+                    Max:{" "}
+                    {convertTemperature(
+                      forecastData.daily.temperature_2m_max[index]
+                    )}
+                    °{unit}
+                  </p>
+                  <p>
+                    Min:{" "}
+                    {convertTemperature(
+                      forecastData.daily.temperature_2m_min[index]
+                    )}
+                    °{unit}
                   </p>
                 </div>
               </div>
             ))}
         </div>
       </div>
+      <button onClick={toggleUnit}>
+        Switch to {unit === "F" ? "Celsius" : "Fahrenheit"}
+      </button>
     </div>
   );
 };

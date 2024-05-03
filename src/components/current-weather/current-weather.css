@@ -1,3 +1,8 @@
+body{
+  
+    font-family: "Josefin Sans", sans-serif;  
+}
+
 .weather {
   width: 100%;
   max-width: 800px;
@@ -14,9 +19,11 @@
 }
 
 .top {
-  margin-top: 20px;
+  /* background-color: red; */
+  margin-top: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  
 
 }
 
@@ -28,21 +35,16 @@
   margin-top: 60px;
 }
 
-.city {
-  font-size: 25px;
+.city,.weather-description {
+  font-size: 20px;
   /* background-color: red; */
   line-height: 1;
   margin: 0;
-  letter-spacing: 1px;
+  font-family: "Josefin Sans", sans-serif !important;
   
 }
 
-.weather-description {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1;
-  margin: 0 60px 0px 10px ;
-}
+
 
 .weather-icon {
   width: 200px;
@@ -57,24 +59,24 @@
 
 .temperature {
   font-weight: 500;
-  font-size: 50px;
+  font-size: 70px;
   width: auto;
-  letter-spacing: -5px;
   margin: 10px 0;
   display: flex;
 }
 
 .hl_temp {
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
 }
 
 .details {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: auto;
   max-height: 150px;
+  
   
 }
 
@@ -85,25 +87,27 @@
 }
 
 .parameter-row {
+  /* background-color: red; */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .parameter-label {
-  font-weight: 400;
-  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  
 }
 
 .parameter-value {
-  text-align: left;
-  font-weight: 600;
-  font-size: 12px;
+  
+
+  margin-top: 5px;
+  font-weight: 500;
+  font-size: 15px;
 }
 
-.parameter-label.top {
-  border-bottom: 1px solid #fff;
-}
+
 
 /* Media Query for smaller screens */
 @media only screen and (max-width: 600px) {
@@ -127,14 +131,14 @@
 .forecast-items {
   /* background-color: red; */
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 5px;
+  margin: 15px;
 }
 
 .forecast-item {
   flex: 1;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   

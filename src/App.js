@@ -9,7 +9,7 @@ function App() {
   const [forecast, setForecast] = useState(null);
 
   useEffect(() => {
-    // Default location coordinates for New York
+    // Default location
     const defaultLat = 28.2669;
     const defaultLon = 83.9685;
 
@@ -51,7 +51,7 @@ function App() {
   const handleOnSearchChange = (searchData) => {
     const [lon, lat] = searchData.value.split(" ");
     const currentWeatherFetch = fetch(
-      `${WEATHER_API_URL}latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&timezone=auto`
+      `${WEATHER_API_URL}latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m&timezone=auto`
     );
     const forecastFetch = fetch(
       `${WEATHER_API_URL}latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`
@@ -68,6 +68,8 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
+  // console.log(currentWeather);
+  // console.log(forecast);
 
   return (
     <div className="container">

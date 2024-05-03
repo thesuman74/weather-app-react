@@ -59,7 +59,7 @@ const CurrentWeather = ({ currentData, forecastData }) => {
         </div>
         <div className="details">
           <div className="parameter-row">
-            <span className="parameter-label top">
+            <span className="parameter-label">
               <img
                 src="icons/50d.png"
                 alt="Wind Icon"

@@ -40,7 +40,10 @@ const CurrentWeather = ({ currentData, forecastData }) => {
             {renderTemperature(currentData.current.temperature_2m)}°
             {isFahrenheit ? "F" : "C"}
           </div>
-          <div className="hl_temp">11/20</div>
+          <div className="hl_temp">
+            {renderTemperature(forecastData.daily.temperature_2m_max[0])}/
+            {renderTemperature(forecastData.daily.temperature_2m_min[0])}
+          </div>
         </div>
         <div className="details">
           <div className="parameter-row">
@@ -52,7 +55,7 @@ const CurrentWeather = ({ currentData, forecastData }) => {
               />
             </span>
             <span className="parameter-value">
-              {currentData.current.wind_speed_10m} mph
+              {currentData.current.wind_speed_10m} KM/H
             </span>
           </div>
           <div className="parameter-row">

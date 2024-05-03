@@ -1,34 +1,8 @@
 import React from "react";
+import { weatherNames, getWeatherIcon, getDayName } from "./weatherUtil";
 import "./current-weather.css";
 
 const CurrentWeather = ({ currentData, forecastData }) => {
-  // console.log(currentData.daily);
-  const weatherNames = {
-    0: "Clear",
-    1: "Cloudy",
-    2: "Partly cloudy",
-    3: "Overcast",
-  };
-
-  const getWeatherIcon = (weatherCode) => {
-    switch (weatherCode) {
-      case 0:
-        return "sun.gif";
-      case 1:
-        return "cloudy.png";
-      case 2:
-        return "partly-cloudy.png";
-      case 3:
-        return "overcast.png";
-      default:
-        return "unknown.png";
-    }
-  };
-  const getDayName = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString("en-US", { weekday: "long" });
-  };
-
   return (
     <div className="weather">
       <div className="top">

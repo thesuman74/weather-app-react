@@ -24,9 +24,17 @@ const CurrentWeather = ({ currentData, forecastData }) => {
   return (
     <div className="weather">
       <div className="top">
-        <p className="city">Right now in {currentData.city}</p>
+        <p className="city">
+          Right now in{" "}
+          <span style={{ fontWeight: "600", color: "#2d2d2d" }}>
+            {currentData.city}
+          </span>
+        </p>
         <p className="weather-description">
-          , it's {weatherNames[currentData.current.weather_code]}
+          , it's{" "}
+          <span style={{ fontWeight: "600", color: "#2d2d2d" }}>
+            {weatherNames[currentData.current.weather_code]}
+          </span>
         </p>
       </div>
       <div className="second_row">
@@ -37,12 +45,16 @@ const CurrentWeather = ({ currentData, forecastData }) => {
         />
         <div className="temperature-box">
           <div className="temperature">
-            {renderTemperature(currentData.current.temperature_2m)}°
-            {isFahrenheit ? "F" : "C"}
+            <span style={{ fontWeight: "400", color: "#2d2d2d" }}>
+              {renderTemperature(currentData.current.temperature_2m)}°
+              {isFahrenheit ? "F" : "C"}{" "}
+            </span>
           </div>
           <div className="hl_temp">
-            {renderTemperature(forecastData.daily.temperature_2m_max[0])}/
-            {renderTemperature(forecastData.daily.temperature_2m_min[0])}
+            <span style={{ fontWeight: "400", color: "#2d2d2d" }}>
+              {renderTemperature(forecastData.daily.temperature_2m_max[0])}/
+              {renderTemperature(forecastData.daily.temperature_2m_min[0])}
+            </span>
           </div>
         </div>
         <div className="details">
@@ -61,7 +73,7 @@ const CurrentWeather = ({ currentData, forecastData }) => {
           <div className="parameter-row">
             <span className="parameter-label">
               <img
-                src="icons/09n.png"
+                src="icons/humidity.png"
                 alt="Humidity Icon"
                 className="parameter-icon"
               />

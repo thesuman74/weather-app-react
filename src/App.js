@@ -10,8 +10,8 @@ function App() {
 
   useEffect(() => {
     // Default location coordinates for New York
-    const defaultLat = 40.7128;
-    const defaultLon = -74.006;
+    const defaultLat = 28.2669;
+    const defaultLon = 83.9685;
 
     const fetchWeatherData = async () => {
       try {
@@ -33,11 +33,11 @@ function App() {
         ]);
 
         setCurrentWeather({
-          city: "New York",
+          city: "Pokhara, Nepal",
           ...currentData,
         });
         setForecast({
-          city: "New York",
+          city: "Pokhara, Nepal",
           ...forecastData,
         });
       } catch (error) {

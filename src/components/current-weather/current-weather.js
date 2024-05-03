@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { weatherNames, getWeatherIcon, getDayName } from "./weatherUtil";
 import "./current-weather.css";
 
 const CurrentWeather = ({ currentData, forecastData }) => {
+  const [isFahrenheit, setIsFahrenheit] = useState(false);
+
+  const toggleTemperatureUnit = () => {
+    setIsFahrenheit(!isFahrenheit);
+  };
+
+  const convertTemperature = (temperature) => {
+    if (isFahrenheit) {
+      return (temperature * 9) / 5 + 32;
+    } else {
+      return temperature;
+    }
+  };
+
+  const renderTemperature = (temperature) => {
+    return convertTemperature(temperature).toFixed(2);
+  };
+
   return (
     <div className="weather">
       <div className="top">
@@ -19,7 +37,8 @@ const CurrentWeather = ({ currentData, forecastData }) => {
         />
         <div className="temperature-box">
           <div className="temperature">
-            {currentData.current.temperature_2m}°C
+            {renderTemperature(currentData.current.temperature_2m)}°
+            {isFahrenheit ? "F" : "C"}
           </div>
           <div className="hl_temp">11/20</div>
         </div>
@@ -75,14 +94,25 @@ const CurrentWeather = ({ currentData, forecastData }) => {
                 />
                 <div className="forecast-info">
                   <p>
-                    {forecastData.daily.temperature_2m_max[index]}/
-                    {forecastData.daily.temperature_2m_min[index]}
+                    {renderTemperature(
+                      forecastData.daily.temperature_2m_max[index]
+                    )}
+                    /
+                    {renderTemperature(
+                      forecastData.daily.temperature_2m_min[index]
+                    )}
                   </p>
                   <p>{getDayName(time)}</p>
                 </div>
               </div>
             ))}
         </div>
+      </div>
+
+      <div className="temperature-toggle">
+        <button onClick={toggleTemperatureUnit}>
+          {isFahrenheit ? "Switch to Celsius" : "Switch to Fahrenheit"}
+        </button>
       </div>
     </div>
   );

@@ -18,6 +18,9 @@ This weather app provides real-time weather information for a given location. It
 
 ### Technologies Used
 
+- Programming Languages: HTML, CSS, JavaScript
+- Framework/Libraries: React js
+
 - Design:https://www.figma.com/file/ABw7Mw53SCFJm1gONquWNz/weather-app?type=design&node-id=0%3A1&mode=design&t=tYoyOPdCVyNCxGGY-1
 
 - Weather API: https://open-meteo.com/en/docs/#latitude=28&longitude=84&timezone=auto

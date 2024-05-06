@@ -13,6 +13,8 @@ const weatherNames = {
   10: "Snow",
   11: "Thunderstorm",
   80: "Showers",
+  95: "slight Thunderstrom",
+  default: "Unknown weather condition",
 };
 
 const getWeatherIcon = (weatherCode) => {
@@ -29,6 +31,7 @@ const getWeatherIcon = (weatherCode) => {
     case 7:
     case 8:
     case 80:
+    case 95:
       return "10d.png";
     case 9:
     case 10:

@@ -26,3 +26,4 @@ This weather app provides real-time weather information for a given location. It
 - Weather API: https://open-meteo.com/en/docs/#latitude=28&longitude=84&timezone=auto
 
 - Geolocation API : https://apidocs.geoapify.com/docs/geocoding/forward-geocoding/#code-samples
+  \v
